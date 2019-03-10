@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, Response
 app = Flask(__name__)
 
 @app.route('/dev/metrics', methods = ['POST', 'GET'])
@@ -9,16 +9,7 @@ def route():
         print(request.get_json())
     else :
         print(request.args)
-    return '''
-        <html>
-            <head>
-                <title>Test</title>
-            </head>
-            <body>
-                <h1>Hello World</h1>
-            </body>
-        </html>
-    ''' 
+    return Response("{'a':'b'}", status=200, mimetype='application/json')
 
 @app.route('/', methods = ['POST', 'GET'])
 def hello():
